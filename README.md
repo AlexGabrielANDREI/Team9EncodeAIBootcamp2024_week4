@@ -1,174 +1,120 @@
-Character Extraction with LlamaIndex
-Overview
-This project is a web application that allows users to upload a .txt file (such as a book or any text with characters and settings) and extract character information using a Retrieval-Augmented Generation (RAG) pipeline with LlamaIndex.
+# Character Extraction with LlamaIndex 📚
 
-The application:
+> An AI-powered web application that extracts character information from text documents using LlamaIndex and GPT-4.
 
-Splits the uploaded text into chunks and builds a vector index.
-Extracts characters from the text using a predefined prompt.
-Displays the extracted characters with their names, descriptions, and personalities in JSON format and in a table.
-Features
-File Upload: Upload a .txt file containing the text from which you want to extract characters.
-Customizable Settings: Adjust parameters such as chunk size, chunk overlap, top K results, temperature, and top P for the model.
-Index Building: Build an index of the text chunks with embeddings for efficient retrieval.
-Character Extraction: Extract character information using a RAG pipeline and display results.
-Results Display: View the extracted character data in both JSON format and a formatted table.
-Technologies Used
-Next.js: A React framework for server-side rendering and building web applications.
-TypeScript: Provides type safety for JavaScript code.
-LlamaIndex: An interface between your data and large language models (LLMs), enabling efficient retrieval and interaction.
-OpenAI API: Utilizes GPT-4 for processing and generating responses.
-Prerequisites
-Node.js: Ensure you have Node.js installed (version 14 or higher recommended).
-OpenAI API Key: You'll need an OpenAI API key to use GPT-4.
-Getting Started
-Installation
-Clone the Repository
+## 🌟 Overview
+
+This application helps you analyze text documents by automatically extracting character information using a Retrieval-Augmented Generation (RAG) pipeline. Simply upload a text file (like a book or script), and the system will identify and describe the characters within it.
+
+### Key Features
+
+- 📤 **File Upload**: Process any .txt file containing character-rich content
+- ⚙️ **Customizable Parameters**: Fine-tune the extraction process
+- 🔍 **Smart Indexing**: Efficient text processing using vector embeddings
+- 🤖 **AI-Powered Analysis**: Character extraction using GPT-4
+- 📊 **Dual Display**: View results in both JSON and table format
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- OpenAI API key
+
+### Installation
+
+1. Clone the repository
 
 bash
-Copy code
 git clone https://github.com/yourusername/character-extraction-llamaindex.git
-Navigate to the Project Directory
-
-bash
-Copy code
 cd character-extraction-llamaindex
-Install Dependencies
+
+
+2. Install dependencies
 
 bash
-Copy code
 npm install
-Configuration
-Set Up Environment Variables
+```
 
-Create a .env.local file in the root of your project and add your OpenAI API key:
-
-env
-Copy code
-OPENAI_API_KEY=your-openai-api-key
-Running the Application
-Start the development server:
+3. Configure environment
 
 bash
-Copy code
+Create .env.local and add your OpenAI API key
+echo "OPENAI_API_KEY=your-openai-api-key" > .env.local
+```
+
+4. Start the development server
+
+bash
 npm run dev
-Open your browser and navigate to http://localhost:3000 to view the application.
+```
 
-Usage
-Upload a .txt File
+Visit `http://localhost:3000` to use the application.
 
-Click on the file input field to upload a .txt file containing the text from which you want to extract characters.
-The contents of the file will be displayed in a read-only text area.
-Adjust Settings (Optional)
+## 💡 Usage Guide
 
-Chunk Size: Adjust the maximum size of the text chunks (in tokens).
-Chunk Overlap: Adjust the overlap between chunks (in tokens).
-Top K: Set the number of top chunks to retrieve.
-Temperature: Control the creativity of the model's responses.
-Top P: Control the probability mass of tokens to consider.
-Build Index
+### 1. Upload Text
+- Select a .txt file using the file input
+- Review the content in the preview area
 
-Click the "Build Index" button to process the text and build a vector index.
-A message will indicate when the index is built.
-Extract Characters
+### 2. Configure Settings (Optional)
+| Parameter | Description |
+|-----------|-------------|
+| Chunk Size | Size of text segments for processing |
+| Chunk Overlap | Overlap between consecutive chunks |
+| Top K | Number of relevant chunks to retrieve |
+| Temperature | Controls response creativity |
+| Top P | Controls response probability filtering |
 
-After the index is built, click the "Extract Characters" button.
-The application will extract character information from the text.
-Messages will inform you of the progress.
-View Results
+### 3. Process Text
+1. Click "Build Index" to create the vector index
+2. Click "Extract Characters" to analyze the text
+3. View results in JSON format and table view
 
-The extracted character data will be displayed in JSON format.
-Below the JSON output, a table presents the characters with their names, descriptions, and personalities.
-Project Structure
-pages/
+## 🛠 Technology Stack
 
-index.tsx: The main page component containing the UI and logic for the application.
-api/
-splitandembed.ts: API endpoint for splitting the uploaded text and generating embeddings.
-extractcharacters.ts: API endpoint for extracting characters from the text using the built index.
-components/ui/: Custom UI components such as Button, Input, Label, LinkedSlider, and Textarea.
+- **Frontend**: Next.js + TypeScript
+- **AI Processing**: LlamaIndex + OpenAI GPT-4
+- **Data Processing**: Vector embeddings for efficient retrieval
 
-lib/: Contains any utility functions or sample data.
+## 📁 Project Structure
 
-API Endpoints
-POST /api/splitandembed
-Description: Processes the uploaded text by splitting it into chunks and generating embeddings.
+├── pages/
+│ ├── index.tsx # Main application page
+│ └── api/
+│ ├── splitandembed.ts # Text processing endpoint
+│ └── extractcharacters.ts # Character extraction endpoint
+├── components/
+│ └── ui/ # UI components
+└── lib/ # Utility functions
 
-Request Body:
 
-json
-Copy code
-{
-"document": "The text content...",
-"chunkSize": 1024,
-"chunkOverlap": 20
-}
-Response:
+## 🔧 API Endpoints
 
-json
-Copy code
-{
-"payload": {
-"nodesWithEmbedding": [
-{
-"text": "Chunk of text...",
-"embedding": [0.123, 0.456, ...]
-},
-...
-]
-}
-}
-POST /api/extractcharacters
-Description: Extracts character information from the text using the built index.
+### POST `/api/splitandembed`
+Processes text and generates embeddings.
 
-Request Body:
+### POST `/api/extractcharacters`
+Extracts character information from processed text.
 
-json
-Copy code
-{
-"nodesWithEmbedding": [...],
-"topK": 2,
-"temperature": 0.1,
-"topP": 1
-}
-Response:
+## ⚠️ Troubleshooting
 
-json
-Copy code
-{
-"payload": {
-"characters": [
-{
-"name": "Character Name",
-"description": "Brief description.",
-"personality": "Personality traits."
-},
-...
-]
-}
-}
-Customization
-Model Settings: Adjust the temperature and topP parameters to control the model's response behavior.
+- **API Key Issues**: Verify your OpenAI API key in `.env.local`
+- **Model Access**: Ensure your API key has GPT-4 access
+- **CORS Errors**: Check API route configuration
+- **JSON Parsing**: Adjust model parameters if receiving malformed responses
 
-Chunking Parameters: Modify chunkSize and chunkOverlap to change how the text is divided, which can impact the quality of the extraction.
+## 📦 Dependencies
 
-Prompt Modification: The prompt used for character extraction is defined in extractcharacters.ts. You can modify it to suit your needs.
+- llamaindex
+- next
+- react
+- openai
 
-Troubleshooting
-Invalid API Key: Ensure your OpenAI API key is correctly set in the .env.local file.
+## 🤝 Contributing
 
-Model Access: Verify that your API key has access to GPT-4.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-CORS Issues: If you encounter CORS errors, ensure your API routes are correctly configured and you're not making cross-origin requests unnecessarily.
+## 📄 License
 
-JSON Parsing Errors: If the AI response cannot be parsed into JSON, consider adjusting the prompt or the model parameters to encourage the model to output valid JSON.
-
-Dependencies
-llamaindex
-next
-react
-openai
-Ensure all dependencies are installed by running npm install.
-
-Contributing
-Contributions are welcome! Feel free to open issues or submit pull requests for improvements or bug fixes.
+This project is licensed under the MIT License - see the LICENSE file for details.
