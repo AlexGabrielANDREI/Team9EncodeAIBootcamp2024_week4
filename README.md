@@ -25,27 +25,28 @@ This application helps you analyze text documents by automatically extracting ch
 
 1. Clone the repository
 
-bash
-git clone https://github.com/yourusername/character-extraction-llamaindex.git
-cd character-extraction-llamaindex
-
+```bash
+git clone https://github.com/AlexGabrielANDREI/Team9EncodeAIBootcamp2024_week4.git
+cd Team9EncodeAIBootcamp2024_week4
+```
 
 2. Install dependencies
 
-bash
+```bash
 npm install
 ```
 
 3. Configure environment
 
-bash
 Create .env.local and add your OpenAI API key
+
+```bash
 echo "OPENAI_API_KEY=your-openai-api-key" > .env.local
 ```
 
 4. Start the development server
 
-bash
+```bash
 npm run dev
 ```
 
