@@ -1,2 +1,6 @@
 ".env" 
 node_modules
+.env.local
+# Ignore Next.js build files
+.next/
+
